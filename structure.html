@@ -6,7 +6,82 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <title>Структура программ</title>
 </head>
-<body>
 
+<body>
+<div class="t_menu">
+    <ol class="t_ol">
+        <li class="t_li">
+            <a href="index.html">Введение в языки программирования C и С++</a>
+        </li>
+        <li class="t_li">
+            <a href="#structure">Структура программ</a>
+        </li>
+        <li class="t_li">
+            <a href="variables.html">Переменные, Инициализация и Присваивание</a>
+        </li>
+        <li class="t_li">
+            <a href="cout_cin.html">cout, cin и endl</a>
+        </li>
+        <li class="t_li">
+            <a href="functions.html">Функции и оператор возврата return</a>
+        </li>
+        <li class="t_li">
+            <a href="parameters.html">Параметры и аргументы функций</a>
+        </li>
+        <li class="t_li">
+            <a href="key_words.html">Ключевые слова и идентификаторы</a>
+        </li>
+        <li class="t_li">
+            <a href="operators.html">Операторы</a>
+        </li>
+        <li class="t_li">
+            <a href="prototypes.html">Прототип функции и Предварительное объявление</a>
+        </li>
+        <li class="t_li">
+            <a href="headers.html">Многофайловые программы и заголовочные файлы</a>
+        </li>
+        <li class="t_li">
+            <a href="pragma.html">Header guards и #pragma once</a>
+        </li>
+        <li class="t_li">
+            <a href="namespaces_confict.html">Конфликт имен и std namespace</a>
+        </li>
+        <li class="t_li">
+            <a href="test.html">Итоговый тест</a>
+        </li>
+    </ol>
+</div>
+
+<div class="page_style">
+    <h1 id="structure">Структура программ</h1>
+    <h2>Стейтменты</h2>
+    <div id="statements">
+        <p><b>Cтейтмент</b> (англ. «statement») — это наиболее распространенный тип инструкций в программах. Это и есть
+            та самая инструкция, наименьшая независимая единица в языке С++. Стейтмент в программировании — это то же
+            самое, что и «предложение» в русском языке. Мы пишем предложения, чтобы выразить какую-то идею. В языке C++
+            мы пишем стейтменты, чтобы выполнить какое-то задание. <b>Все стейтменты в языке C++ заканчиваются точкой с
+                запятой</b>.</p>
+        <p>Есть много разных видов стейтментов в языке C++. Рассмотрим самые распространенные из них:</p>
+        <div class="img">
+            <img src="img/2/statements.png" alt="Самые распространенные стейтменты"/>
+        </div>
+        <p><i>int х</i> — это <b>стейтмент объявления</b> (англ. «statement declaration»). Он сообщает компилятору, что
+            х является переменной. В программировании каждая переменная занимает определенное число адресуемых ячеек в
+            памяти в зависимости от её типа. Минимальная адресуемая ячейка — байт. Переменная типа int может занимать до
+            4 байт, т.е. до 4 адресуемых ячеек памяти. Все переменные в программе должны быть объявлены, прежде чем
+            использованы. Мы детально поговорим о переменных на следующих уроках.</p>
+        <p><i>х = 5</i> — это <b>стейтмент присваивания</b> (англ. «assignment statement»). Здесь мы присваиваем
+            значение <i>5</i> переменной <i>х</i>.</p>
+        <p><i>std::cout << x;</i> — это <b>стейтмент вывода</b> (англ. «output statement»). Мы выводим значение
+            переменной <i>х</i> на экран.</p>
+    </div>
+
+    <h2 id="expressions">Выражения</h2>
+
+    <button style="display: inline-block; float: right;" onclick="document.location='variables.html'">Следующий урок
+    </button>
+    <button style="display: inline-block; float: left;" onclick="document.location='index.html'">Предыдущий урок
+    </button>
+</div>
 </body>
 </html>
