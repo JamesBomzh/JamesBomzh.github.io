@@ -1,10 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru-RU">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>cout, cin и endl</title>
 </head>
-<body>
 
+<body>
+<div class="t_menu">
+    <ol class="t_ol">
+        <li class="t_li">
+            <a href="index.html">Введение в языки программирования C и С++</a>
+        </li>
+        <li class="t_li">
+            <a href="structure.html">Структура программ</a>
+        </li>
+        <li class="t_li">
+            <a href="variables.html">Переменные, Инициализация и Присваивание</a>
+        </li>
+        <li class="t_li">
+            <a href="cout_cin.html">cout, cin и endl</a>
+            <ol class="t_ol">
+                <li class="t_li"><a href="#cout">Объект std::cout</a></li>
+                <li class="t_li"><a href="#endl">Объект std::endl</a></li>
+                <li class="t_li"><a href="#cin">Объект std::cin</a></li>
+            </ol>
+        </li>
+        <li class="t_li">
+            <a href="functions.html">Функции и оператор возврата return</a>
+        </li>
+        <li class="t_li">
+            <a href="parameters.html">Параметры и аргументы функций</a>
+        </li>
+        <li class="t_li">
+            <a href="key_words.html">Ключевые слова и идентификаторы</a>
+        </li>
+        <li class="t_li">
+            <a href="operators.html">Операторы</a>
+        </li>
+        <li class="t_li">
+            <a href="prototypes.html">Прототип функции и Предварительное объявление</a>
+        </li>
+        <li class="t_li">
+            <a href="headers.html">Многофайловые программы и заголовочные файлы</a>
+        </li>
+        <li class="t_li">
+            <a href="pragma.html">Header guards и #pragma once</a>
+        </li>
+        <li class="t_li">
+            <a href="namespaces_conflict.html">Конфликт имен и std namespace</a>
+        </li>
+        <li class="t_li">
+            <a href="test.html">Итоговый тест</a>
+        </li>
+    </ol>
+</div>
+
+<div class="page_style">
+    <h1>cout, cin и endl</h1>
+    <h2 id="cout">Объект std::cout</h2>
+    <div>
+        <p>Как мы уже говорили на предыдущих уроках, объект <b>std::cout</b> (который находится в библиотеке iostream)
+            используется для вывода данных на экран (в консольное окно). В качестве напоминания, вот наша программа
+            «Hello, world!»:</p>
+        <div class="img">
+            <img src="img/4/cout1.png" alt="cout1"/>
+        </div>
+        <p>Для вывода нескольких предложений на одной строке <b>оператор вывода</b> <i><<</i> нужно использовать
+            несколько раз, например:</p>
+        <div class="img">
+            <img src="img/4/cout2.png" alt="cout2"/>
+        </div>
+        <p>Программа выведет:</p>
+        <p><i>a is 7</i></p>
+        <p>А какой результат выполнения следующей программы?</p>
+        <div class="img">
+            <img src="img/4/cout3.png" alt="cout3"/>
+        </div>
+        <p>Возможно, вы удивитесь, но:</p>
+        <p><i>Hi!My name is Anton.</i></p>
+    </div>
+
+    <h2 id="endl">Объект std::endl</h2>
+    <div>
+        <p>Если текст нужно вывести раздельно (на нескольких строках) — используйте std::endl. При использовании с
+            std::cout, <b>std::endl</b> вставляет символ новой строки. Таким образом, мы перемещаемся к началу следующей
+            строки, например:</p>
+        <div class="img">
+            <img src="img/4/endl.png" alt="endl"/>
+        </div>
+        <p>Результат:</p>
+        <p><i>Hi!</i></p>
+        <p><i>My name is Anton.</i></p>
+    </div>
+
+    <h2 id="cin">Объект std::cin</h2>
+    <div>
+        <p>std::cin является противоположностью std::cout. В то время как std::cout выводит данные в консоль с помощью
+            оператора вывода <i><<</i>, <b>std::cin</b> получает данные от пользователя с помощью <b>оператора ввода</b>
+            <i>>></i>. Используя std::cin мы можем получать и обрабатывать пользовательский ввод:</p>
+        <div class="img">
+            <img src="img/4/cin.png" alt="cin">
+        </div>
+        <p>Попробуйте скомпилировать и запустить эту программу. При запуске вы увидите <i>Enter a number:</i>, а затем
+            программа будет ждать, пока вы укажите число. Как только вы это сделаете и нажмете Enter, программа выведет
+            <i>You entered</i>, а затем ваше число.</p>
+        <p>Это самый простой способ получения данных от пользователя. Мы будем его использовать в дальнейших
+            примерах.</p>
+        <p>Если же ввести действительно большое число, то вы получите переполнение, так как переменная а может содержать
+            числа только определенного размера/диапазона. Если число больше/меньше допустимых максимумов/минимумов, то
+            происходит переполнение. Об этом мы детально поговорим на следующих уроках.</p>
+    </div>
+
+    <button style="display: inline-block; float: right;" onclick="document.location='functions.html'">Следующий урок
+    </button>
+    <button style="display: inline-block; float: left;" onclick="document.location='variables.html'">Предыдущий урок
+    </button>
+</div>
 </body>
 </html>
