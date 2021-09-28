@@ -135,3 +135,16 @@ h3:before {
     counter-increment: h3cnt;
     content: counter(h2cnt) "." counter(h3cnt) ". ";
 }
+
+.questions__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.questions__question_error {
+    color: red;
+}
+
+.questions__question_success {
+    color: green;
+}
