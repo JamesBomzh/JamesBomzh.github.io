@@ -1,10 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru-RU">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Header guards и #pragma once</title>
 </head>
-<body>
 
+<body>
+<div class="t_menu">
+    <ol class="t_ol">
+        <li class="t_li">
+            <a href="index.html">Введение в языки программирования C и С++</a>
+        </li>
+        <li class="t_li">
+            <a href="structure.html">Структура программ</a>
+        </li>
+        <li class="t_li">
+            <a href="variables.html">Переменные, Инициализация и Присваивание</a>
+        </li>
+        <li class="t_li">
+            <a href="cout_cin.html">cout, cin и endl</a>
+        </li>
+        <li class="t_li">
+            <a href="functions.html">Функции и оператор возврата return</a>
+        </li>
+        <li class="t_li">
+            <a href="parameters.html">Параметры и аргументы функций</a>
+        </li>
+        <li class="t_li">
+            <a href="key_words.html">Ключевые слова и идентификаторы</a>
+        </li>
+        <li class="t_li">
+            <a href="operators.html">Операторы</a>
+        </li>
+        <li class="t_li">
+            <a href="prototypes.html">Прототип функции и Предварительное объявление</a>
+        </li>
+        <li class="t_li">
+            <a href="headers.html">Многофайловые программы и заголовочные файлы</a>
+        </li>
+        <li class="t_li">
+            <a href="pragma.html">Header guards и #pragma once</a>
+            <ol class="t_ol">
+                <li class="t_li"><a href="#double_problem">Проблема дублирования объявлений</a></li>
+                <li class="t_li"><a href="#header_guards">Header guards</a></li>
+                <li class="t_li"><a href="#pragma">#pragma once</a></li>
+            </ol>
+        </li>
+        <li class="t_li">
+            <a href="namespaces_conflict.html">Конфликт имен и std namespace</a>
+        </li>
+        <li class="t_li">
+            <a href="test.html">Итоговый тест</a>
+        </li>
+    </ol>
+</div>
+
+<div class="page_style">
+    <h1>Header guards и #pragma once</h1>
+    <h2 id="double_problem">Проблема дублирования объявлений</h2>
+    <div>
+        <p>Как мы уже знаем из урока о предварительных объявлениях, идентификатор может иметь только одно объявление.
+            Таким образом, программа с двумя объявлениями одной переменной получит ошибку компиляции:</p>
+        <div class="img">
+            <img src="img/11/1.png" alt="1"/>
+        </div>
+        <p>То же самое касается и функций:</p>
+        <div class="img">
+            <img src="img/11/2.png" alt="2"/>
+        </div>
+        <p>Хотя вышеприведенные ошибки легко исправить (достаточно просто удалить дублирование), с заголовочными файлами
+            дела обстоят несколько иначе. Довольно легко можно попасть в ситуацию, когда определения одних и тех же
+            заголовочных файлов будут подключаться больше одного раза в файл .cpp. Очень часто это случается при
+            подключении одного заголовочного файла другим.</p>
+        <p>Рассмотрим следующую программу:</p>
+        <p>math.h:</p>
+        <div class="img">
+            <img src="img/11/3.png" alt="3"/>
+        </div>
+        <p>geometry.h:</p>
+        <div class="img">
+            <img src="img/11/4.png" alt="4"/>
+        </div>
+        <p>main.cpp:</p>
+        <div class="img">
+            <img src="img/11/5.png" alt="5"/>
+        </div>
+        <p>Эта, казалось бы, невинная программа, не скомпилируется! Проблема кроется в определении функции в файле
+            math.h. Давайте детально рассмотрим, что здесь происходит:</p>
+        <ul>
+            <li>Сначала main.cpp подключает заголовочный файл math.h, вследствие чего определение функции getSquareSides
+                копируется в main.cpp.
+            </li>
+            <li>Затем main.cpp подключает заголовочный файл geometry.h, который, в свою очередь, подключает math.h.</li>
+            <li>В geometry.h находится копия функции getSquareSides() (из файла math.h), которая уже во второй раз
+                копируется в main.cpp.
+            </li>
+        </ul>
+        <p>Таким образом, после выполнения всех директив #include, main.cpp будет выглядеть следующим образом:</p>
+        <div class="img">
+            <img src="img/11/6.png" alt="6"/>
+        </div>
+        <p>Мы получим дублирование определений и ошибку компиляции. Если рассматривать каждый файл по отдельности, то
+            ошибок нет. Однако в main.cpp, который подключает сразу два заголовочных файла с одним и тем же определением
+            функции, мы столкнемся с проблемами. Если для geometry.h нужна функция getSquareSides(), а для main.cpp
+            нужен как geometry.h, так и math.h, то какое же решение?</p>
+    </div>
+
+    <h2 id="header_guards">Header guards</h2>
+    <div>
+        <p>На самом деле решение простое — использовать header guards (защиту подключения в языке C++). <b>Header
+            guards</b> — это директивы условной компиляции, которые состоят из следующего:</p>
+        <div class="img">
+            <img src="img/11/7.png" alt="7"/>
+        </div>
+        <p>Если подключить этот заголовочный файл, то первое, что он сделает — это проверит, был ли ранее определен
+            идентификатор <i>SOME_UNIQUE_NAME_HERE</i>. Если мы впервые подключаем этот заголовок, то <i>SOME_UNIQUE_NAME_HERE</i>
+            еще не был определен. Следовательно, мы определяем <i>SOME_UNIQUE_NAME_HERE</i> (с помощью директивы
+            #define) и выполняется основная часть заголовочного файла. Если же мы раньше подключали этот заголовочный
+            файл, то <i>SOME_UNIQUE_NAME_HERE</i> уже был определен. В таком случае, при подключении этого заголовочного
+            файла во второй раз, его содержимое будет проигнорировано.</p>
+        <p>Все ваши заголовочные файлы должны иметь header guards. <i>SOME_UNIQUE_NAME_HERE</i> может быть любым
+            идентификатором, но, как правило, в качестве идентификатора используется имя заголовочного файла с
+            окончанием <i>_H</i>. Например, в файле math.h идентификатор будет <i>MATH_H</i>:</p>
+        <p>math.h:</p>
+        <div class="img">
+            <img src="img/11/8.png" alt="8"/>
+        </div>
+        <p>Даже заголовочные файлы из Стандартной библиотеки С++ используют header guards. Если бы вы взглянули на
+            содержимое заголовочного файла iostream, то вы бы увидели:</p>
+        <div class="img">
+            <img src="img/11/9.png" alt="9"/>
+        </div>
+        <p>Но сейчас вернемся к нашему примеру с math.h, где мы попытаемся исправить ситуацию с помощью header
+            guards:</p>
+        <p>math.h:</p>
+        <div class="img">
+            <img src="img/11/10.png" alt="10"/>
+        </div>
+        <p>geometry.h:</p>
+        <div class="img">
+            <img src="img/11/4.png" alt="4"/>
+        </div>
+        <p>main.cpp:</p>
+        <div class="img">
+            <img src="img/11/5.png" alt="5"/>
+        </div>
+        <p>Теперь, при подключении в main.cpp заголовочного файла math.h, препроцессор увидит, что <i>MATH_H</i> не был
+            определен, следовательно, выполнится директива определения <i>MATH_H</i> и содержимое math.h скопируется в
+            main.cpp. Затем main.cpp подключает заголовочный файл geometry.h, который, в свою очередь, подключает
+            math.h. Препроцессор видит, что <i>MATH_H</i> уже был ранее определен и содержимое geometry.h не будет
+            скопировано в main.cpp.</p>
+        <p>Вот так можно бороться с дублированием определений с помощью header guards.</p>
+    </div>
+
+    <h2 id="pragma">#pragma once</h2>
+    <div>
+        <p>Большинство компиляторов поддерживают более простую, альтернативную форму header guards — <b>директиву
+            #pragma</b>:</p>
+        <div class="img">
+            <img src="img/11/11.png" alt="11"/>
+        </div>
+        <p><i>#pragma once</i> используется в качестве header guards, но имеет дополнительные преимущества — она короче
+            и менее подвержена ошибкам.</p>
+        <p>Однако, <i>#pragma once</i> не является официальной частью языка C++, и не все компиляторы её поддерживают
+            (хотя большинство современных компиляторов поддерживают).</p>
+    </div>
+
+    <button style="display: inline-block; float: right;" onclick="document.location='namespaces_conflict.html'">
+        Следующий урок
+    </button>
+    <button style="display: inline-block; float: left;" onclick="document.location='headers.html'">Предыдущий урок
+    </button>
+</div>
 </body>
 </html>
