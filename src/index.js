@@ -5,7 +5,7 @@ const questions = [
         answers: [
             {
                 id: 1,
-                text: '#include <iostream.h>',
+                text: '#include < iostream.h >',
                 isCorrect: false,
             },
             {
@@ -15,7 +15,7 @@ const questions = [
             },
             {
                 id: 3,
-                text: '#include <iostream>',
+                text: '#include < iostream >',
                 isCorrect: true,
             },
             {
