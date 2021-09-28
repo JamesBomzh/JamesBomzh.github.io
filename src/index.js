@@ -93,37 +93,6 @@ const questions = [
         ]
     },
     {
-        id: 3,
-        text: 'Сколько аргументов можно передать в функцию?',
-        answers: [
-            {
-                id: 1,
-                text: 'До 10',
-                isCorrect: false,
-            },
-            {
-                id: 2,
-                text: 'Не более 50',
-                isCorrect: false,
-            },
-            {
-                id: 3,
-                text: 'Неограниченное количество',
-                isCorrect: true,
-            },
-            {
-                id: 4,
-                text: "До 30",
-                isCorrect: false,
-            },
-            {
-                id: 5,
-                text: 'До 5',
-                isCorrect: false,
-            },
-        ]
-    },
-    {
         id: 4,
         text: 'Что покажет код ниже?\n int const a = 5;\na++; \ncout << a;',
         answers: [
