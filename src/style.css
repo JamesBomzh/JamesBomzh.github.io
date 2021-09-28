@@ -56,10 +56,9 @@ h3 {
     color: #365F91;
 }
 h4 {
-    font-size: 1.17em;
+    font-size: 1.5em;
     line-height: 1em;
-    font-weight: bold;
-    text-align: center;
+    color: #365F91;
 }
 
 /* Отступы в списках */

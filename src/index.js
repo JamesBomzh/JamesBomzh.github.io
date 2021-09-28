@@ -94,7 +94,7 @@ const questions = [
     },
     {
         id: 4,
-        text: 'Что покажет код ниже?\n int const a = 5;\na++; \ncout << a;',
+        text: 'Что покажет код ниже?<br>int const a = 5; <br> a++;<br>cout << a;',
         answers: [
             {
                 id: 1,
@@ -366,7 +366,7 @@ const getQuestionsHTML = (question) => {
     answersHTML.forEach(item => list += item);
     return (`
         <div class="questions">
-            <h3 class="questions__title">${question.text}</h3>
+            <h4 class="questions__title">${question.text}</h4>
             <div class="questions__list">
                 ${list}
             </div>
@@ -385,7 +385,7 @@ const getQuestionBlock = (page) => {
     else {
         paper.innerHTML = `
             <div>
-                Количество правильных ответов: ${countRightAnswers}
+                Количество правильных ответов: ${countRightAnswers}/${max}
             </div>
         `
     }
