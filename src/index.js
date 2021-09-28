@@ -350,7 +350,8 @@ const questions = [
     },
 ];
 
-const paper = document.getElementById('page_style');
+// const paper = document.getElementById('page_style');
+const paper = document.querySelector('.page_style');
 let page = 0;
 let countRightAnswers = 0;
 const max = questions.length;
